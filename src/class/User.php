@@ -40,7 +40,7 @@ class User extends DBConnect
             $_SESSION['badlogin'][$login]++;
             if ($_SESSION['badlogin'][$login] > 3) {
                 $del = new News();
-                $del->blockUser($login);
+                $del->blockUser($login, $loginOK);
                 echo 'Konto zablokowane stworz nowe';
                 die;
             }elseif ($_SESSION['badlogin'][$login] > 2) {

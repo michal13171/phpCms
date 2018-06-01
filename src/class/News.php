@@ -62,11 +62,12 @@ class News extends DBConnect
         return $result;
     }
 
-    public function blockUser(int $id): bool
+    public function blockUser(int $id, string $login): bool
     {
-        $sql = 'DELETE FROM news WHERE login=:login';
+        $sql = 'DELETE FROM news WHERE id_news=:id AND login=:login';
         $query = $this->pdo->prepare($sql);
-        $query->bindValue(':login', $id, PDO::PARAM_INT);
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->bindValue(':login', $login, PDO::PARAM_STR);
         $result = $query->execute();
         return $result;
     }
